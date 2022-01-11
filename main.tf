@@ -1,7 +1,7 @@
 provider "aws" {
     region = "us-east-1"
     #Local profile for provider.
-    profile = "panda" #Name must exists inside ~/.aws/credentials
+    profile = "mislav" #Name must exists inside ~/.aws/credentials
 
     # Instead of profile, keys could be typed here - Bad practice..:)
     # access_key_id=..
@@ -9,16 +9,16 @@ provider "aws" {
 }
 
 # Free tier
-resource "aws_instance" "panda"{
+resource "aws_instance" "mislav"{
     ami = "ami-04505e74c0741db8d"
     instance_type = "t2.micro"
-    key_name = "panda_kurs"
+    key_name = "key_name"
 
     connection{
         host        = self.public_ip
         type        = "ssh"
         user        = "ubuntu"
-        private_key = file("~/Downloads/panda_kurs.pem")
+        private_key = file("~/Downloads/key_name.pem")
     }
 
     # Execute on machine which will be created, e.g. EC2
