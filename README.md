@@ -10,13 +10,20 @@ _destroy_ | Destroy infra.
 _show_ | Show actual state of infra.
 _state list_ | Show list of used resources.
 _taint <resource>_ | Set flag **TAINT** on resource. Resources with the **TAINT** flag will be created again during usage of **APPLY**.
-
+  
+  ----------------
 
 **Good practices**:
 - Name file as "main.tf"
 - -auto-approve :)
 
-  
- **terraform.tfstate / terraform.tfstate.backup**
+  ----------------
+ **terraform.tfstate**
   <br>contains configration backup after terraform apply/destroy
+  - create after running **terraform apply**.
+  - If already exists, actual file will be copied into **terraform.tfstate.backup**, and next replaced by new one.
+  - Contains acutal state of infrastructure as it is seen by Terraform.
+  - Lost or damanged file provide desync of acutal state seen by Terraform.
+  - Could be refreshed by command **terraform refresh ** or filled by **terraform import** (use as a last resort).
+  
   
