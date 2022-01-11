@@ -3,6 +3,7 @@
 **COMMAND** | **DESCRIPTION**
 ------------- | -------------
 _init_ | init catalog .terraform. Must be run to start working with a new catalog and changes of provider. Download provider dependencies from the internet.
+_fmt_ | Reformat your configuration in the standard style.
 _plan_ | Show what will be done when we will use command “apply”
 _validate_ | Check if everything is ok with the code.
 _apply_ | Create infrastructure.
