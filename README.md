@@ -1,5 +1,5 @@
 # Terraform
-**COMMAND | DESCRIPTION**
+**COMMAND** | **DESCRIPTION**
 ------------- | -------------
 _init_ | init catalog .terraform. Must be run to start working with a new catalog and changes of provider. Download provider dependencies from the internet.
 _plan_ | Show what will be done when we will use command “apply”
