@@ -30,11 +30,9 @@ _taint <resource>_ | Set flag **TAINT** on resource. Resources with the **TAINT*
 ## AWS
 * `cd aws`
 * `terraform init`
+* `terraform validate`
 * `terraform plan -var-file example.tfvars`
 * `terraform apply -var-file example.tfvars -auto-approve`
-<br>
 * `watch -n 1 curl -s alb-xxxxxxxxx.us-east-1.elb.amazonaws.com`
-
 ---
-
 * `terraform destroy -var-file example.tfvars -auto-approve`
