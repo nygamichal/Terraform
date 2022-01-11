@@ -14,3 +14,4 @@ _taint <resource>_ | Set flag **TAINT** on resource. Resources with the **TAINT*
 
 **Good practices**:
 - Name file as "main.tf"
+- -auto-approve :)
