@@ -2,6 +2,10 @@ provider "aws" {
     region = "us-east-1"
     #Local profile for provider.
     profile = "panda"
+
+    # Instead of profile, keys could be typed here - Bad practice..:)
+    # access_key_id=..
+    # secret_access_key=..
 }
 
 # Free tier
