@@ -1,5 +1,6 @@
 You are an admin who supports one of the largest online comicbook retailers in the world. You are one of a handful of admins who have been assigned to use Terraform to manage the company's cloud deployments. You are being asked to deploy a simple Kubernetes cluster running two NGINX nodes to test out a new web application on a local server before deploying to the cloud. You will need to first set up the cluster using kind and kubectl, and then use Terraform to deploy the NGINX nodes.
 
+https://learn.acloud.guru/handson/80c60020-be0d-4226-966a-c15e6b8e0424
 
 ---------
 
