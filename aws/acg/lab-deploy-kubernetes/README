@@ -1,0 +1,31 @@
+You are an admin who supports one of the largest online comicbook retailers in the world. You are one of a handful of admins who have been assigned to use Terraform to manage the company's cloud deployments. You are being asked to deploy a simple Kubernetes cluster running two NGINX nodes to test out a new web application on a local server before deploying to the cloud. You will need to first set up the cluster using kind and kubectl, and then use Terraform to deploy the NGINX nodes.
+
+
+---------
+
+1. Create Your Kubernetes Cluster
+In the Terminal
+Once logged in to your instance, change into the lab-deploy-kubernetes directory.
+Use kind and the kind-config.yaml file to create a cluster named lab-terraform-kubernetes.
+Point kubectl at your cluster to allow interaction.
+
+Create k8s cluster:
+* `kind create cluster --name lab-terraform-kubernetes --config kind-config.yaml`
+
+Get info about k8s
+* `kubectl cluster-info --context kind-lab-terraform-kubernetes`
+
+Get info about clusters from kind
+* `kind get clusters`
+
+2. Configure Terraform for Use with the Kubernetes Cluster
+In the Terminal
+Gather cluster information to input values for your variables file.
+Edit your terraform.tfvars file and add your cluster host and client certificate values.
+Initialize your working directory.
+
+
+Gather cluster information to input values for your variables file.
+* `kubectl config view --minify --flatten --context=kind-lab-terraform-kubernetes`
+
+then just easy terraform init, validate, plan and apply, after that please just use kubectl to verify:)
