@@ -2,6 +2,21 @@ You are an admin who supports one of the largest online comicbook retailers in t
 
 https://learn.acloud.guru/handson/80c60020-be0d-4226-966a-c15e6b8e0424
 
+
+Use by kind command to build a cluster:
+kind-config.yaml
+
+Treat it as main terraform configuration file(main.tf)
+kubernetes.tf
+
+Configuration file where we declare our resources that we deploy into nginx pods.
+lab_kubernetes_resources.tf
+
+resource_ids.txt
+
+Variable configuration file:
+terraform.tfvars
+
 ---------
 
 1. Create Your Kubernetes Cluster
@@ -13,7 +28,7 @@ Point kubectl at your cluster to allow interaction.
 Create k8s cluster:
 * `kind create cluster --name lab-terraform-kubernetes --config kind-config.yaml`
 
-Get info about k8s
+Get info about k8s / config kubectl to tal with the cluster??????
 * `kubectl cluster-info --context kind-lab-terraform-kubernetes`
 
 Get info about clusters from kind

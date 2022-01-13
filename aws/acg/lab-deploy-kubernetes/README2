@@ -1,0 +1,63 @@
+Manage Kubernetes Resources with Terraform
+This lab will demonstrate how to change, manage, and delete resources in Kubernetes using Terraform.
+You, as an admin, are being asked to deploy a NodePort service to your Kubernetes cluster to go along with your NGINX nodes.
+You will need to first set up the cluster using kind and kubectl, and deploy the NGINX nodes using Terraform.
+You will then use Terraform to deploy the NodePort service, and scale your NGINX nodes from 2 to 4 nodes.
+You will finish by destroying your resource and deleting your cluster.
+
+
+You should see 4 files: kind-config.yaml, kubernetes.tf, lab_kubernetes_resources.tf, and terraform.tfvars.
+Create a cluster:
+kind create cluster --name lab-terraform-kubernetes --config kind-config.yaml
+
+After the cluster is created, copy and run the command provided in the terminal to configure kubetctl:
+kubectl cluster-info --context kind-lab-terraform-kubernetes
+
+Confirm the lab-terraform-kubernetes cluster was created:
+kind get clusters
+
+Edit the cluster's host address:
+Run kubectl to view the cluster's host address:
+kubectl config view --minify --flatten --context=kind-lab-terraform-kubernetes
+Copy the server address.
+
+Edit the variables file:
+vim terraform.tfvars
+
+Initialize your working directory:
+terraform init
+Deploy your resources to your Kubernetes cluster:
+terraform apply
+When prompted, type "yes" to confirm the deployment. The deployment takes a moment to complete.
+Add a Service
+Download the Terraform configuration file provided in the lab's resources:
+mv ./second_lab_additional_files/lab_kubernetes_service.tf .
+
+In addition to the previous 4 files, you should now see 2 additional files: lab_kubernetes_service.tf and terraform.tfstate.
+View the lab_kubernetes_service.tf file:
+vim lab_kubernetes_service.tf
+
+Apply the added configuration:
+terraform apply
+
+Verify the NodePort service was applied successfully:
+kubectl get services
+You should see the NodePort service named robin listed in your services.
+Scale the Nodes
+Edit the lab_kubernetes_resources.tf file:
+vim lab_kubernetes_resources.tf
+Modify the replicas from 2 to 4:
+
+Apply your changes:
+terraform apply
+
+Verify your deployment is now using 4 pods:
+kubectl get deployments
+Delete Your Cluster
+Destroy your resources, including your NGINX deployment and NodePort service:
+terraform destroy
+On the Enter a value line, type "yes" to confirm the destroy. The destroy takes a moment to complete.
+Delete your cluster:
+kind delete cluster --name lab-terraform-kubernetes
+Verify the cluster was deleted:
+kind get clusters
