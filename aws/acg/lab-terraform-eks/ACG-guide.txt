@@ -1,0 +1,150 @@
+Use Terraform to Create an EKS Deployment
+Introduction
+Hey there, Gurus! Welcome to the lab! In this lab, you will demonstrate how to set up a small EKS cluster and deploy two NGINX nodes using Terraform. As an admin, you have been asked to deploy a simple EKS cluster running to NGINX nodes to test out a new web application. You will need to first use Terraform to deploy the EKS cluster, and then deploy the NGINX nodes with Terraform. Once confirmed they are working, you will then delete your cluster with Terraform.
+
+Solution
+Log in to the server using the credentials provided:
+
+ssh cloud_user@<PUBLIC_IP_ADDRESS>
+Note: The AWS Access Key and AWS Secret Access Key needed to configure the AWS CLI in the terminal are provided with the lab credentials.
+
+Configure the AWS CLI
+Configure the AWS CLI in the Terminal
+Configure your AWS CLI:
+
+aws configure
+When prompted for your AWS Access Key ID, copy and paste in the Access Key provided with the lab credentials.
+
+When prompted for your AWS Secret Access Key, copy and paste in the Secret Access Key provided with the lab credentials.
+
+Press Enter to accept the default region.
+
+Press Enter to accept the default output.
+Review the Contents of the Configuration Files in the lab-terraform-eks Directory
+View the contents of the directory:
+
+ls
+Go into the lab-terraform-eks directory:
+
+cd lab-terraform-eks/
+View the contents of the lab-terraform-eks directory:
+
+ls
+Open the kubernetes.tf file:
+
+vim kubernetes.tf
+Review the contents of the file, and then enter :q! to exit the file.
+
+Open the eks-cluster.tf file:
+
+vim eks-cluster.tf
+Review the contents of the file, and then enter :q! to exit the file.
+
+Open the security-groups.tf file:
+
+vim security-groups.tf
+Review the contents of the file, and then enter :q! to exit the file.
+
+Open the vpc.tf file:
+
+vim vpc.tf
+Review the contents of the file, and then enter :q! to exit the file.
+
+Open the versions.tf file:
+
+vim versions.tf
+Review the contents of the file, and then enter :q! to exit the file.
+
+Open the outputs.tf file:
+
+vim outputs.tf
+Review the contents of the file, and then enter :q! to exit the file.
+
+Deploy the EKS Cluster
+Initialize the working directory:
+
+terraform init
+Review the actions that will be performed and check for any potential errors:
+
+terraform plan
+Apply the configuration and deploy your cluster:
+
+terraform apply
+Type "yes" and hit Enter to confirm. Allow the configuration to complete successfully and create your resources, including the EKS cluster.
+
+Configure kubectl to interact with the cluster:
+
+aws eks --region $(terraform output -raw region) update-kubeconfig --name $(terraform output -raw cluster_name)
+Confirm that kubectl was configured properly and that the cluster was successfully deployed:
+
+kubectl get cs
+The three components should be up and running with a status of Healthy.
+
+Deploy the NGINX Pods
+Download the lab_kubernetes_resources.tf file that contains the configuration for the NGINX deployments from the GitHub repo:
+
+wget https://raw.githubusercontent.com/linuxacademy/content-terraform-2021/main/lab_kubernetes_resources.tf
+Confirm that the file was downloaded to the directory successfully:
+
+ls
+Open the lab_kubernetes_resources.tf file:
+
+vim lab_kubernetes_resources.tf
+Review the contents of the file, and then enter :q! to exit the file.
+
+Review the actions that will be performed and check for any potential errors:
+
+terraform plan
+Apply the configuration and deploy your NGINX pods to your EKS cluster:
+
+terraform apply
+Type "yes" and hit Enter to confirm. Allow the configuration to complete successfully and create your resources, including the NGINX pods.
+
+Confirm that the NGINX pods were successfully deployed:
+
+kubectl get deployments
+The two long-live-the-bat pods should both be up and running.
+
+Destroy Your Cluster
+Destroy all of the resources you just created:
+
+terraform destroy
+Type "yes" and hit Enter to confirm.
+
+Confirm the resources were all destroyed:
+
+terraform show
+Nothing should be returned, confirming that all resources were properly destroyed.
+
+Conclusion
+Congratulations — you've completed this hands-on la
+
+
+
+================================================
+Learning Objectives
+4 of 4 completed
+
+Configure the AWS CLI
+1) In the terminal, configure your AWS CLI using the AWS Access Key and AWS Secret Access Key provided with the lab credentials. 2) Change to the 'lab-terraform-eks' directory. 3) Review the Terraform configuration files.
+
+
+Deploy the EKS Cluster
+1) Initialize your working directory. 2) Deploy your EKS cluster. 3) Configure 'kubectl' to interact with your EKS cluster. 4) Confirm the cluster is up and running.
+
+
+Deploy the NGINX Pods
+1) Download the lab_kubernetes_resources.tf file from the GitHub repo. 2) Review the new configuration file. 3) Deploy the resources to your EKS cluster. 4) Confirm the deployment was successful.
+
+
+Destroy Your Cluster
+1) Delete your cluster and all its resources. 2) Confirm deletion.
+==============================================
+Additional Resources
+Lab Scenario
+You are an admin who supports one of the largest online comic book retailers in the world. You are one of a handful of Terraform admins who have been assigned to use Terraform to manage the company's cloud deployments. You are being asked to deploy a simple EKS cluster running to NGINX nodes to test out a new web application. You will need to first use Terraform to deploy the EKS cluster and then deploy the NGINX nodes with Terraform. Once confirmed that the app is working and the testing is done, you will then be expected to delete the cluster with Terraform.
+
+Lab Setup
+To access the Terraform configuration files used in this lab, go here.
+
+To access the additional Terraform resource configuration file, go here.
