@@ -56,3 +56,10 @@ Later on please run below:
 * `watch -n 1 curl -s alb-xxxxxxxxx.us-east-1.elb.amazonaws.com`
 ---
 * `terraform destroy -var-file example.tfvars -auto-approve`
+  
+  ---------
+  Logging
+  Verbose output logging for terraform commands
+  * `export TF_LOG=TRACE`
+  disable
+  * `export TF_LOG=`
