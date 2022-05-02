@@ -9,11 +9,15 @@ provider "aws" {
 }
 
 # Free tier
-resource "aws_instance" "mislav" {
+resource "aws_instance" "vm" {
   ami           = "ami-04505e74c0741db8d"
   instance_type = "t2.micro"
   key_name      = "key_name"
 
+  tags = {
+    Name = "my-first-tf-node"
+  }
+  
   connection {
     host        = self.public_ip
     type        = "ssh"
