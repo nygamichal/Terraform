@@ -63,3 +63,7 @@ Later on please run below:
   * `export TF_LOG=TRACE`
   disable
   * `export TF_LOG=`
+  
+  
+ Data source - something which already exists
+ Resource - something that will be created.
